@@ -1,0 +1,15 @@
+# Make sure all variable names have been replaced with absolute path and that no line begins with a $ or ~s
+
+-in:file:native input_files/miniC3_0.00_6.00_250.00_200.00_212.50_1.80_0.00_3.00_0001_0033_A.pdb
+-in:file:fasta input_files/miniC3_0.00_6.00_250.00_200.00_212.50_1.80_0.00_3.00_0001_0033_A.fasta                 
+-in:file:frag3 input_files/3mers                                        
+-in:file:frag9 input_files/9mers                                                                                                
+-nstruct 50
+-abinitio:relax
+-abinitio::increase_cycles 10   # Increase the number of cycles at each stage in AbinitioRelax by this factor
+-abinitio::rg_reweight 0.5      # Reweight contribution of radius of gyration to total score by this scale factor
+-abinitio::rsd_wt_helix 0.5     # Reweight env, pair, and cb scores for helix residues by this factor
+-abinitio::rsd_wt_loop 0.5      # Reweight env, pair, and cb scores for loop residues by this factor
+-relax::fast    # At the end of the de novo protein_folding, do a relax step of type "FastRelax".  This has been shown to be the best deal for speed and robustness.
+-out:file:silent output_files/fold_silent_${SLURM_ARRAY_TASK_ID}.out
+-overwrite
